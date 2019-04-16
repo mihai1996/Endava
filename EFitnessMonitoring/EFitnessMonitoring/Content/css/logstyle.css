@@ -1,0 +1,70 @@
+﻿.borderlog {
+    width: 220px;
+    margin: 14px auto;
+    position:relative;
+}
+
+.borderlog input[type=text], input[type=password] {
+    padding-left: 20px;
+}
+
+.borderlog i{
+    position:absolute;
+    left:2px;
+    top: 4px;
+    padding: 3px;
+}
+
+
+.btnreg  {
+    color: black;
+    margin-left:138px;
+    text-decoration: underline;
+   
+}
+
+.btnreg:hover {
+        text-decoration: underline;
+        color: #f65a5b;
+}
+
+.btnlog {
+    width: 220px;
+    margin: 14px auto;
+    color: white;
+    background: black;
+    
+}
+.btnlog:hover {
+        background: #f65a5b;
+        color: white;
+}
+
+.regborder {
+    width: 220px;
+    margin: 14px auto;
+    position:relative;
+}
+
+.regborder input[type=text], input[type=password], input[type=email], input[type=date], .regborder select {
+    padding-left: 20px;
+}
+
+.regborder i {
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    padding: 3px;
+}
+
+.btnreg1 {
+    width: 220px;
+    margin: 14px auto;
+    color: white;
+    background: black;
+    margin-bottom: 100px;
+}
+    .btnreg1:hover {
+        background: #f65a5b;
+        color: white;
+    }

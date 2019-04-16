@@ -1,0 +1,13 @@
+﻿@using librarieonline.Models
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+@foreach (var book in Model)
+{
+    <h2>Book Name: @book.Name</h2>
+    <h2>Book Autor: @book.Author</h2>
+    <h2>Book Description: @book.Description</h2>
+}

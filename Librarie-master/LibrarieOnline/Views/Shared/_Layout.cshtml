@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Librarie Online</title>
+    
+    <style>
+        .myNavbar {
+            background-color: blue;
+            margin-bottom: 30px;
+            height: 52px;
+        }
+
+        .myNavbarContent {
+            background-color: aqua;
+            width: 75%;
+            margin: auto;
+            height: 52px;
+        }
+
+        .NvbarText {
+            padding: 12px 5px 10px 5px;
+            float: left;
+            word-spacing: 10px;
+        }
+        .btnlog {
+            padding: 12px 5px 10px 5px;
+            float: right;
+            word-spacing: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="myNavbar">
+        <div class="myNavbarContent">
+            <div class="NvbarText">
+                @Html.ActionLink("Home", "Index", "Home", new { }, new { })
+                @Html.ActionLink("About", "About", "Home", new { }, new { })
+                @Html.ActionLink("Contact", "Contact", "Home", new { }, new { })
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("admin"))
+                {
+            <div class="NvbarText">
+                @Html.ActionLink("UploadBook", "UploadBook", "Book", new { }, new { })
+            </div>
+                }
+
+                if (User.IsInRole("user"))
+                {
+                    @Html.ActionLink("Charge Your Account", "Index", "Cont", new { }, new { })
+                    @Html.ActionLink("Achizitii", "Index", "Achizitie", new { }, new { })
+                }
+            }
+            <div class="btnlog">
+    
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Logout", "Logout", "Auth", new { }, new { })
+                }
+                else
+                {
+                    <div class="btnlog">
+                    @Html.ActionLink("Login", "Login", "Auth", new { }, new { })
+                    @Html.ActionLink("Registration", "Registration", "Auth", new { }, new { })
+                        </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+</body>
+</html>

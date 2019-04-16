@@ -1,0 +1,72 @@
+﻿<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        @*<li class="nav-item">
+            <a href="/Auth/Login" class="nav-link">Login</a>
+        </li>*@
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<section class="about" id="about">
+    <div class="container">
+        <div class="row effcet-about">
+            <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-left">
+                <h2 class="mb-lg-5 mb-lg-4 mb-3">Educatie si monitorizare fitness</h2>
+                <div class="ile-about-para">
+                    <p style="text-align: justify;">Domeniul de studiu al sistemului informațional monitorizare fitness este sănătate și sport. Sportul este o activitate care poate influința stilul de viață, sănătatea sau personalitatea unui om. Conceptul de sport ca o activitate ce implică abilitățile umane de bază, fizice și mentale, urmărește îmbunătățirea acestor abilități pentru a fi utilizate mai eficient și sugerează faptul că sportul este probabil la fel de vechi ca dezvoltarea inteligenței umane.</p>
+                </div>
+                <div class="mt-lg-3 mt-2 ile-about-para">
+                    <p style="text-align: justify;">Scopul sistemului de monitorizare fitness este de a stimula societatea să ducă un mod sănătos de viață și de a evita problema globală ce ține de tematica obezitate. Sistemul motivează oamenii să facă efort fizic chair și dacă au probleme de sănătate, aceasta nu este un motiv să evite mișcarea din viața de zi cu zi. </p>
+                </div>
+            </div>
+            <div class="col-lg-5 about-States-list" data-aos="fade-left">
+                <img src="/Content/images/ab0.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- //gallery -->
+    <div class="address_mail_footer_grids aos-init aos-animate" data-aos="fade-up">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d43510.36457196984!2d28.84420726459722!3d47.032424697169546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1ssala+sport+chisinau!5e0!3m2!1sro!2sus!4v1554039292575!5m2!1sro!2sus"></iframe>
+    </div>
+</section>

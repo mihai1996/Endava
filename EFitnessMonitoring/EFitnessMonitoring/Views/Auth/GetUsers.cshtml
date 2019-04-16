@@ -1,0 +1,104 @@
+﻿@model IEnumerable<EFitnessMonitoring.Models.Identity.UserRoleIntPk>
+
+<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        @*<li class="nav-item">
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            </li>*@
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+<!--tablela-->
+<br />
+
+<br />
+
+<div class="ui-field-contain">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.User.UserName)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.User.Email)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Role.Name)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.Name)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("AddRole", "CreateUserRoles", new { @class = "tabel" }) |
+
+                        @Html.ActionLink("Delete", "Delete", "Auth", new { id = item.Id }, new { @class = "tabel" })
+                    </td>
+                </tr>
+            }
+            </tbody>
+</table>
+</div>

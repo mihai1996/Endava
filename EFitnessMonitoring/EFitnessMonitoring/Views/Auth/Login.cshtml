@@ -1,0 +1,78 @@
+﻿@using EFitnessMonitoring.Models.DTO
+@model LoginViewModel
+
+<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        @*<li class="nav-item">
+            <a href="/Auth/Login" class="nav-link">Login</a>
+        </li>*@
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!--Login Form-->
+<br />
+<h1 style="text-align:center;">Login</h1>
+<form action="/Auth/Login" method="post">
+    <div class="lb-outerContainer">
+        <div class="borderlog">
+            @Html.ValidationSummary()
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        </div>
+        <div class="borderlog">
+            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", required = "required" })
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="borderlog">
+            @Html.PasswordFor(m => m.Parola, new { placeholder = "Parola", required = "required" })
+            <i class="fas fa-lock"></i>
+        </div>
+        <div>
+            <a class="btnreg" href="/Auth/Registration">Registration</a>
+        </div>
+        <div>
+            <input class="btnlog" type="submit" value="Logare" />
+        </div>
+    </div>
+</form>
+

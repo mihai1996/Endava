@@ -1,0 +1,115 @@
+﻿<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        @*<li class="nav-item">
+            <a href="/Auth/Login" class="nav-link">Login</a>
+        </li>*@
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+
+<!--portfolio -->
+<section class="gallery py-lg-4 py-md-3 py-sm-3 py-3" id="gallery">
+    <div class="container py-lg-5 py-md-5 py-sm-4 py-3">
+        <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">Galerie</h3>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 p-0 snap-img">
+                <div class="its_outs_gallery_grid1" data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href=@Url.Content("/Content/images/g01.jpg") data-lightbox="example-set" data-title="Sportul dă putere. Forța dă încredere. Încrederea te face să ai succes.">
+                            <img src="/Content/images/g01.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="its_outs_gallery_grid1" data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g02.jpg" data-lightbox="example-set" data-title="Două cuvinte pe care trebuie să le uitați - 'Nu pot'">
+                            <img src="/Content/images/g02.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 p-0 snap-img">
+                <div class=" its_outs_gallery_grid1" data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g03.jpg" data-lightbox="example-set" data-title="Nu există oameni slabi în sport, sunt doar cei care nu încearcă...">
+                            <img src="/Content/images/g03.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="its_outs_gallery_grid1" data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g06.jpg" data-lightbox="example-set" data-title="Nu renunta niciodata. Lucrurile mărețe au nevoie de timp.">
+                            <img src="/Content/images/g06.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 p-0 snap-img">
+                <div class="its_outs_gallery_grid1 " data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g04.jpg" data-lightbox="example-set" data-title="Cel mai bun moment este timpul de antrenament!">
+                            <img src="/Content/images/g04.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="its_outs_gallery_grid1 " data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g05.jpg" data-lightbox="example-set" data-title="Dacă aveți complexe - lucrați la voi înșivă și nu încercați să vă afirmați, căutați defecte în alte persoane.
+">
+                            <img src="/Content/images/g05.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                <div class="its_outs_gallery_grid1" data-aos="zoom-in-up">
+                    <div class="ile_gallery_effect">
+                        <a href="/Content/images/g07.jpg" data-lightbox="example-set" data-title="Sursa oboselii nu este în corp, ci în minte. Puteți face mult mai mult decât credeți.">
+                            <img src="/Content/images/g07.jpg" alt=" " class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

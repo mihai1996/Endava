@@ -1,0 +1,142 @@
+﻿<div class="header-outs" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        @*<li class="nav-item">
+            <a href="/Auth/Login" class="nav-link">Login</a>
+        </li>*@
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                   
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--banner -->
+    <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLiveLabel">EMF</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="/Content/images/b1.jpg" alt="" class="img-fluid">
+                    <p>
+                        A fi sportiv nu înseamnă a practica doar un sport, a fi sportiv înseamnă a avea o viaţă sănătoasă: fizic, psihic şi spiritual!
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="banner-slide-img" data-aos="fade-up">
+            <!-- Slideshow 4 -->
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides" id="slider4">
+                        <li>
+                            <div class="slider-img">
+                                <div class="slider-info ">
+                                    <h4>Fitness și sănătate</h4>
+                                    <div class="mt-3 outs_more-buttn">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModalLive">Citște mai mult</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="slider-img">
+                                <div class="slider-info ">
+                                    <h4>Educație Fitness</h4>
+                                    <div class="mt-3 outs_more-buttn">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModalLive">Citște mai mult</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="slider-img">
+                                <div class="slider-info">
+                                    <h4>Alimentare Fitness</h4>
+                                    <div class="mt-3 outs_more-buttn">
+                                        <a href="#" data-toggle="modal" data-target="#exampleModalLive">Citște mai mult</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- This is here just to demonstrate the callbacks -->
+            </div>
+            <!-- //Slideshow 4 -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="row effcet-about">
+            <div class="col-lg-7 jst-about py-lg-5 pt-md-5 pt-sm-4 pt-3" data-aos="fade-right">
+                <h2 class="mb-lg-5 mb-lg-4 mb-3">Educație și monitorizare fitness</h2>
+                <div class="ile-about-para">
+                    <p style="text-align:justify;">Sistemul de educație și monitorizare fitness este o platformă online care vă ajută să duceți un mod de viață sănătos prin intermediul sportului. Scopul nostru este de a evita creșterea numărului de persoane supraponderale în societate. Alăturîndu-vă comunității noastre și dumneavoastră puteți contribui la motivarea oamenilor pentru un mod sănătos de viață.</p>
+                    <br />
+                    <i class="fas fa-dumbbell fa-4x"></i>
+                    <br />
+                    <h2 class="mb-lg-5 mb-lg-4 mb-3" style="margin-left:24px">Sport</h2>
+                    <p style="text-align:justify">De la exerciții de ardere a grăsimilor până la construirea mușchilor și antrenamente funcționale.</p>
+                    <br />
+                    <i class="fas fa-apple-alt fa-4x"></i>
+                    <br />
+                    <h2 class="mb-lg-5 mb-lg-4 mb-3" style="margin-left:24px">Ghid nutrițional</h2>
+                    <p style="text-align:justify">Combinarea programului dvs. de formare cu un plan nutrițional solid va conduce la o pierdere rapidă și consecventă în greutate sau la un câștig muscular.</p>
+                    <br />
+                    <i class="fas fa-comment fa-4x"></i>
+                    <br />
+                    <h2 class="mb-lg-5 mb-lg-4 mb-3" style="margin-left:24px">Forum</h2>
+                    <p1 style="text-align:justify">Forumul vă permite să comunicați cu alte persoane la diverse temtici din domeniul sportiv doar în urma logării la sistem.</p1>
+                    <br /><br /><br />
+                </div>
+            </div>
+        </div>
+    </div>

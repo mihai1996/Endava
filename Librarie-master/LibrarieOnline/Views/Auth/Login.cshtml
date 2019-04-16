@@ -1,0 +1,16 @@
+﻿@model LibrarieOnline.Models.DTO.LoginViewModel
+
+@using (Html.BeginForm("Login","Auth", FormMethod.Post))
+{
+    <h2>Login</h2> 
+    @Html.TextBoxFor(model => model.UserName)
+    <br>
+    <br>
+    <h2>Password</h2>
+    @Html.PasswordFor(model => model.Password)
+    <br />
+    <br />
+    <div style="padding-left:107px;">
+        <button type="submit">Log In</button>
+    </div>
+}
