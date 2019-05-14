@@ -68,3 +68,32 @@
         background: #f65a5b;
         color: white;
     }
+
+.borderarticle  {
+    width: 300px;
+    margin: 14px auto;
+    position: relative;
+}
+
+    .borderarticle input[type = text] {
+        padding: 20px 20px 20px 40px;
+    }
+
+    .borderarticle i {
+        position:absolute;
+        bottom: 5px;
+        left: 5px;
+        padding: 1px;
+    }
+
+.btnArticol {
+    color: white;
+    background: black;
+}
+
+.btnArticol:hover {
+    background: #f65a5b;
+    color: white;
+}
+        
+        

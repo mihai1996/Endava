@@ -1,0 +1,123 @@
+﻿@using EFitnessMonitoring.Models
+@model  List<DomeniuSport>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+
+
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Antrenor/GetCardProduct" class="nav-link">Produse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Antrenor/Atrenamente/" class="nav-link">Fitness</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+@if (User.IsInRole("antrenor"))
+{
+    <a style="margin-left: 16px" href="/Antrenor/AntrenorMode">Crează articol</a>
+}
+    <a style="margin-left: 16px" href="/Antrenor/GetCardSanatate">Sanatate exercitii</a>
+    <a style="margin-left: 16px" href="/Antrenor/GetCardGrafic">Grafic antrenamente</a>
+    <select name="sort-news" id="sort-news" style="width:150px; margin-left: 16px; margin-top:6px">
+        <option value="All">All news</option>
+        <option value="1">Antebraț</option>
+        <option value="2">Spate</option>
+        <option value="3">Triceps</option>
+        <option value="4">Cvadriceps</option>
+        <option value="5">Gastrocnemius</option>
+        <option value="6">Umeri</option>
+        <option value="7">Piept</option>
+        <option value="8">Biceps</option>
+        <option value="9">Abdomen</option>
+    </select>
+    <ul class="cards">
+        @foreach (var art in Model)
+        {
+            
+            <li class="cards__item" data-category="@art.ClasaMuschi.Id_muschi">
+                <div class="card">
+
+                    <div>
+                        <img class="card-img-top" src="@art.Image">
+                    </div>
+                    <div class="card__content">
+                        <div class="card__title">@art.Nume_exercitiu</div>
+
+                        <a href="/Antrenor/ShowAntrenamente/@art.Id_exercitiu" class="btn btn--block card__btn"> Citește </a>
+                        
+                    </div>
+                </div>
+            </li>
+
+        }
+    </ul>
+<br /><br />
+<script>
+    //Filter News
+    $('select#sort-news').change(function () {
+        var filter = $(this).val()
+        filterList(filter);
+    });
+
+    //News filter function
+    function filterList(value) {
+        var list = $(".cards .cards__item");
+        $(list).fadeOut("fast");
+        if (value == "All") {
+            $(".cards").find("li").each(function (i) {
+                $(this).delay(200).slideDown("fast");
+            });
+        } else {
+            //Notice this *=" <- This means that if the data-category contains multiple options, it will find them
+            //Ex: data-category="Cat1, Cat2"
+            $(".cards").find("li[data-category*=" + value + "]").each(function (i) {
+                $(this).delay(200).slideDown("fast");
+            });
+        }
+    }
+</script>

@@ -1,0 +1,169 @@
+﻿
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.btn {
+    background-color: white;
+    border: 1px solid #cccccc;
+    color: #696969;
+    padding: 0.5rem;
+    text-transform: lowercase;
+}
+
+.btn--block {
+    display: block;
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cards__item {
+    display: flex;
+    padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+    .cards__item {
+        width: 50%;
+    }
+}
+
+@media (min-width: 56rem) {
+    .cards__item {
+        width: 33.3333%;
+    }
+}
+
+.card {
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    .card:hover .card__image {
+        -webkit-filter: contrast(100%);
+        filter: contrast(100%);
+    }
+
+.card__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.card__image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    -webkit-filter: contrast(70%);
+    filter: contrast(70%);
+    overflow: hidden;
+    position: relative;
+    transition: -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+    transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+    transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91), -webkit-filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+}
+
+    .card__image::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+    }
+
+@media (min-width: 40rem) {
+    .card__image::before {
+        padding-top: 66.6%;
+    }
+}
+
+.card__title {
+    color: #696969;
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.card__text {
+    flex: 1 1 auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+.card-img-top {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+
+
+/*---------------------------------*/
+/* Create two unequal columns that floats next to each other */
+/* center column */
+.centercolumn {
+    margin: auto;
+    width: 50%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+    /*background-color: #aaa;*/
+    
+    width: 100%;
+    /*padding: 20px;*/
+    height: 400px;
+    margin-bottom: 10px;
+}
+
+/* Add a card effect for articles */
+.kard {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    
+}
+
+.kard iframe{
+    width:100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .centercolumn, .rightcolumn  {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/*----------------------------------*/

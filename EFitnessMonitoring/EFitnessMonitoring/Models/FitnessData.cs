@@ -23,17 +23,17 @@ namespace EFitnessMonitoring.Models
         public virtual DbSet<DomeniuAntrenamente> DomeniuAntrenamentes { get; set; }
         public virtual DbSet<DomeniuSanatate> DomeniuSanatates { get; set; }
         public virtual DbSet<DomeniuSport> DomeniuSports { get; set; }
-        public virtual DbSet<ExercitiiSpeciale> ExercitiiSpeciales { get; set; }
+        public virtual DbSet<ProduseCategory> ProduseCategories { get; set; }
+        //public virtual DbSet<ExercitiiSpeciale> ExercitiiSpeciales { get; set; }
         public virtual DbSet<GraficAntrenament> GraficAntrenaments { get; set; }
         public virtual DbSet<Medicina> Medicinas { get; set; }
-        public virtual DbSet<Nutritie> Nutrities { get; set; }
+        //public virtual DbSet<Nutritie> Nutrities { get; set; }
         public virtual DbSet<Produse> Produses { get; set; }
         public virtual DbSet<SubiecteForum> SubiecteForums { get; set; }
-        public virtual DbSet<Warkout> Warkouts { get; set; }
         public virtual DbSet<UserRoleIntPk> UserRoleIntPks { get; set; }
+        public virtual DbSet<ClasaMuschi> ClasaMuschis { get; set; }
 
-        //public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; } // asita
-        //public virtual DbSet<RoleIntPk> RoleIntPks { get; set; }  // aista
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -51,20 +51,17 @@ namespace EFitnessMonitoring.Models
                 .WithRequired(e => e.DomeniuSanatate)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<DomeniuSanatate>()
-                .HasMany(e => e.Nutrities)
-                .WithRequired(e => e.DomeniuSanatate)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<DomeniuSanatate>()
+            //    .HasMany(e => e.Nutrities)
+            //    .WithRequired(e => e.DomeniuSanatate)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<DomeniuSport>()
-                .HasMany(e => e.Warkouts)
-                .WithRequired(e => e.DomeniuSport)
-                .WillCascadeOnDelete(false);
+           
 
-            modelBuilder.Entity<Medicina>()
-                .HasMany(e => e.ExercitiiSpeciales)
-                .WithRequired(e => e.Medicina)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Medicina>()
+            //    .HasMany(e => e.ExercitiiSpeciales)
+            //    .WithRequired(e => e.Medicina)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SubiecteForum>()
                 .Property(e => e.Comntariu)
@@ -75,25 +72,25 @@ namespace EFitnessMonitoring.Models
                 .WithMany(e => e.SubiecteForums1)
                 .Map(m => m.ToTable("Comentarii").MapLeftKey("Id_subiect").MapRightKey("Id_user"));
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.DomeniuAntrenamentes)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.DomeniuAntrenamentes)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.DomeniuSanatates)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.DomeniuSanatates)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(e => e.DomeniuSports)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.ExercitiiSpeciales)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.ExercitiiSpeciales)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(e => e.GraficAntrenaments)
@@ -105,10 +102,10 @@ namespace EFitnessMonitoring.Models
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.Nutrities)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.Nutrities)
+            //    .WithRequired(e => e.User)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(e => e.Produses)
@@ -121,10 +118,17 @@ namespace EFitnessMonitoring.Models
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(e => e.Warkouts)
-                .WithRequired(e => e.User)
+            modelBuilder.Entity<ClasaMuschi>()
+                .HasMany(e => e.DomeniuSports)
+                .WithRequired(e => e.ClasaMuschi)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ProduseCategory>()
+               .HasMany(e => e.Produses)
+               .WithRequired(e => e.ProduseCategory)
+               .WillCascadeOnDelete(false);
+
+
         }
     }
 }

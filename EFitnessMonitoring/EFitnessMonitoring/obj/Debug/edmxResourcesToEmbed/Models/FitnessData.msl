@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FitnessModelStoreContainer" CdmEntityContainer="FitnessEntities">
+    <EntitySetMapping Name="DomeniuAntrenamentes">
+      <EntityTypeMapping TypeName="FitnessModel.DomeniuAntrenamente">
+        <MappingFragment StoreEntitySet="DomeniuAntrenamente">
+          <ScalarProperty Name="Id_antrenament" ColumnName="Id_antrenament" />
+          <ScalarProperty Name="Nume_antrenament" ColumnName="Nume_antrenament" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DomeniuSanatates">
+      <EntityTypeMapping TypeName="FitnessModel.DomeniuSanatate">
+        <MappingFragment StoreEntitySet="DomeniuSanatate">
+          <ScalarProperty Name="Id_categorie" ColumnName="Id_categorie" />
+          <ScalarProperty Name="Nume_categorie" ColumnName="Nume_categorie" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DomeniuSports">
+      <EntityTypeMapping TypeName="FitnessModel.DomeniuSport">
+        <MappingFragment StoreEntitySet="DomeniuSport">
+          <ScalarProperty Name="Id_muschi" ColumnName="Id_muschi" />
+          <ScalarProperty Name="Nume_muschi" ColumnName="Nume_muschi" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExercitiiSpeciales">
+      <EntityTypeMapping TypeName="FitnessModel.ExercitiiSpeciale">
+        <MappingFragment StoreEntitySet="ExercitiiSpeciale">
+          <ScalarProperty Name="Id_exSpecial" ColumnName="Id_exSpecial" />
+          <ScalarProperty Name="Id_maladie" ColumnName="Id_maladie" />
+          <ScalarProperty Name="Nume_exercitiu" ColumnName="Nume_exercitiu" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GraficAntrenaments">
+      <EntityTypeMapping TypeName="FitnessModel.GraficAntrenament">
+        <MappingFragment StoreEntitySet="GraficAntrenament">
+          <ScalarProperty Name="Id_grafic" ColumnName="Id_grafic" />
+          <ScalarProperty Name="Id_antrenament" ColumnName="Id_antrenament" />
+          <ScalarProperty Name="Titlu" ColumnName="Titlu" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicinas">
+      <EntityTypeMapping TypeName="FitnessModel.Medicina">
+        <MappingFragment StoreEntitySet="Medicina">
+          <ScalarProperty Name="Id_maladie" ColumnName="Id_maladie" />
+          <ScalarProperty Name="Id_categorie" ColumnName="Id_categorie" />
+          <ScalarProperty Name="Nume_maladie" ColumnName="Nume_maladie" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nutrities">
+      <EntityTypeMapping TypeName="FitnessModel.Nutritie">
+        <MappingFragment StoreEntitySet="Nutritie">
+          <ScalarProperty Name="Id_aliment" ColumnName="Id_aliment" />
+          <ScalarProperty Name="Id_categorie" ColumnName="Id_categorie" />
+          <ScalarProperty Name="Nume_aliment" ColumnName="Nume_aliment" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produses">
+      <EntityTypeMapping TypeName="FitnessModel.Produse">
+        <MappingFragment StoreEntitySet="Produse">
+          <ScalarProperty Name="Id_produs" ColumnName="Id_produs" />
+          <ScalarProperty Name="Nume_produs" ColumnName="Nume_produs" />
+          <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+          <ScalarProperty Name="Linq" ColumnName="Linq" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="FitnessModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubiecteForums">
+      <EntityTypeMapping TypeName="FitnessModel.SubiecteForum">
+        <MappingFragment StoreEntitySet="SubiecteForum">
+          <ScalarProperty Name="Id_subiect" ColumnName="Id_subiect" />
+          <ScalarProperty Name="Subiect" ColumnName="Subiect" />
+          <ScalarProperty Name="Comntariu" ColumnName="Comntariu" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FitnessModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gen" ColumnName="Gen" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Parola" ColumnName="Parola" />
+          <ScalarProperty Name="ConfirmPaorola" ColumnName="ConfirmPaorola" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warkouts">
+      <EntityTypeMapping TypeName="FitnessModel.Warkout">
+        <MappingFragment StoreEntitySet="Warkout">
+          <ScalarProperty Name="Id_exercitiu" ColumnName="Id_exercitiu" />
+          <ScalarProperty Name="id_muschi" ColumnName="id_muschi" />
+          <ScalarProperty Name="Nume_exercitiu" ColumnName="Nume_exercitiu" />
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Comentarii" TypeName="FitnessModel.Comentarii" StoreEntitySet="Comentarii">
+      <EndProperty Name="SubiecteForum">
+        <ScalarProperty Name="Id_subiect" ColumnName="Id_subiect" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

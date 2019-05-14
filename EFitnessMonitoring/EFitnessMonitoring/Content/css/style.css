@@ -1501,7 +1501,7 @@ select {
 
 .field {
     display: inline-block;
-    width: 52%;
+    width: 62%;
 }
 
     .field + .field {
@@ -1606,3 +1606,18 @@ i.fas  {
         box-shadow: 3px 3px 0px transparent;
         transition: 0.5s;
     }
+
+/*cards*/
+/*.grid-containers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+}*/
+
+/*.grid-containers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 5fr));
+    grid-gap: 20px;
+    
+}*/
+

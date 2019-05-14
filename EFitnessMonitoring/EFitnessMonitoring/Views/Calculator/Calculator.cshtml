@@ -11,12 +11,23 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
                     <ul class="navbar-nav">
+
+
                         @if (User.IsInRole("admin"))
                         {
                             <li class="nav-item">
                                 <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a href="/Antrenor/GetCardProduct" class="nav-link">Produse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Antrenor/GetCardGrafic" class="nav-link">Grafic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Antrenor/Atrenamente" class="nav-link">Fitness</a>
+                        </li>
                         <li class="nav-item">
                             <a href="/Home/About" class="nav-link">Despre</a>
                         </li>
@@ -26,9 +37,7 @@
                         <li class="nav-item">
                             <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
                         </li>
-                        @*<li class="nav-item">
-            <a href="/Auth/Login" class="nav-link">Login</a>
-        </li>*@
+                        
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -66,7 +75,7 @@
         <div class="form-fields">
 
             <div class="field-outer">
-                <label for="distance" class="top-label">Age:</label>
+                <label for="distance" class="top-label">Virsta:</label>
                 <div class="field-items">
                     <div class="field field-large">
                         <input type="text" name="age" id="age" inputmode="numeric" pattern="[0-9]*">
@@ -74,8 +83,8 @@
 
                     <div class="field field-medium">
                         <select name="gender">
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
+                            <option value="Female">Feminin</option>
+                            <option value="Male">Masculin</option>
 
                         </select>
 
@@ -85,41 +94,34 @@
 
             <div class="field-outer">
             <br />
-                <label for="height" class="top-label">Height:</label>
+                <label for="height" class="top-label">Înălțime:</label>
                 <div class="field-items">
-                    <div class="field">
-                        <input type="text" name="height_ft" id="height-ft" inputmode="numeric" pattern="[0-9]*">
-                        <label for="height-ft">feet</label>
-                    </div><!--  /.field -->
-                    <div class="field">
-                        <input type="text" name="height_in" id="height-in" inputmode="numeric" pattern="[0-9]*">
-                        <label for="height-in">inches</label>
-                    </div><!--  /.field -->
-                    <div class="field">
-                        <input type="text" name="height_cm" id="height-cm" inputmode="numeric" pattern="[0-9]*">
-                        <label for="height-cm">or cm</label>
+                    
+                    
+                    <div class="field field-large">
+                        <input type="text" name="height_cm" id="height-cm" inputmode="numeric" pattern="[0-9]*" placeholder="cm">
                     </div><!--  /.field -->
                 </div><!--  /.field-items -->
             </div><!--  /.field-outer -->
 
             <div class="field-outer">
             <br />
-                <label for="weight" class="top-label">Your weight:</label>
+                <label for="weight" class="top-label">Greutate:</label>
                 <div class="field-items">
                     <div class="field field-large">
-                        <input type="text" name="weight" id="weight" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" name="weight" id="weight" inputmode="numeric" pattern="[0-9]*" placeholder="kg">
                     </div><!--  /.field-large -->
                     <div class="field field-small">
                         <select name="weight_unit">
-                            <option value="lb">lb</option>
                             <option value="kg">kg</option>
+                            <option value="lb">lb</option>
                         </select>
                     </div><!--  /.field-small -->
                 </div><!--  /.field-items -->
             </div><!--  /.field-outer -->
         <br />
             <div class="btn-wrap field-outer">
-                <button class="form-submit">Calculate</button>
+                <button class="form-submit">Calculează</button>
             </div>
         </div><!--  /.form fields -->
 
@@ -143,7 +145,7 @@
 
 
   function showResults(calories) {
-    results.innerHTML = `<p>Your basal metabolic rate (BMR) is: <strong>${calories.toFixed(2)} </strong> calories a day.</p><a href="#" id="rs">revise</a>`;
+    results.innerHTML = `<p>Rata metabolică fundamentală (BMR) este: <strong>${calories.toFixed(2)} </strong> calorii pe zi.</p><a href="#" id="rs">Înapoi</a>`;
     results.style.display = '';
     form.style.display = 'none';
     errors.style.display = 'none';

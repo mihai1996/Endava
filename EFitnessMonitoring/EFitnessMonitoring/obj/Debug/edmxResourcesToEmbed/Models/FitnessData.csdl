@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DomeniuAntrenamente">
+    <Key>
+      <PropertyRef Name="Id_antrenament" />
+    </Key>
+    <Property Name="Id_antrenament" Type="Int32" Nullable="false" />
+    <Property Name="Nume_antrenament" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_AntrenamentUser" FromRole="DomeniuAntrenamente" ToRole="Users" />
+    <NavigationProperty Name="GraficAntrenaments" Relationship="Self.FK_GraficAntrenamnte" FromRole="DomeniuAntrenamente" ToRole="GraficAntrenament" />
+  </EntityType>
+  <EntityType Name="DomeniuSanatate">
+    <Key>
+      <PropertyRef Name="Id_categorie" />
+    </Key>
+    <Property Name="Id_categorie" Type="Int32" Nullable="false" />
+    <Property Name="Nume_categorie" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Medicinas" Relationship="Self.FK_MedicinaDsanatate" FromRole="DomeniuSanatate" ToRole="Medicina" />
+    <NavigationProperty Name="Nutrities" Relationship="Self.FK_NutritieDsanatate" FromRole="DomeniuSanatate" ToRole="Nutritie" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SanatateUser" FromRole="DomeniuSanatate" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="DomeniuSport">
+    <Key>
+      <PropertyRef Name="Id_muschi" />
+    </Key>
+    <Property Name="Id_muschi" Type="Int32" Nullable="false" />
+    <Property Name="Nume_muschi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SportUser" FromRole="DomeniuSport" ToRole="Users" />
+    <NavigationProperty Name="Warkouts" Relationship="Self.FK_SportWorkout" FromRole="DomeniuSport" ToRole="Warkout" />
+  </EntityType>
+  <EntityType Name="ExercitiiSpeciale">
+    <Key>
+      <PropertyRef Name="Id_exSpecial" />
+    </Key>
+    <Property Name="Id_exSpecial" Type="Int32" Nullable="false" />
+    <Property Name="Id_maladie" Type="Int32" Nullable="false" />
+    <Property Name="Nume_exercitiu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Medicina" Relationship="Self.FK_ExSpecialeMedicna" FromRole="ExercitiiSpeciale" ToRole="Medicina" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ExSpecialeUser" FromRole="ExercitiiSpeciale" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="GraficAntrenament">
+    <Key>
+      <PropertyRef Name="Id_grafic" />
+    </Key>
+    <Property Name="Id_grafic" Type="Int32" Nullable="false" />
+    <Property Name="Id_antrenament" Type="Int32" Nullable="false" />
+    <Property Name="Titlu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DomeniuAntrenamente" Relationship="Self.FK_GraficAntrenamnte" FromRole="GraficAntrenament" ToRole="DomeniuAntrenamente" />
+    <NavigationProperty Name="User" Relationship="Self.FK_GraficUser" FromRole="GraficAntrenament" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Medicina">
+    <Key>
+      <PropertyRef Name="Id_maladie" />
+    </Key>
+    <Property Name="Id_maladie" Type="Int32" Nullable="false" />
+    <Property Name="Id_categorie" Type="Int32" Nullable="false" />
+    <Property Name="Nume_maladie" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DomeniuSanatate" Relationship="Self.FK_MedicinaDsanatate" FromRole="Medicina" ToRole="DomeniuSanatate" />
+    <NavigationProperty Name="ExercitiiSpeciales" Relationship="Self.FK_ExSpecialeMedicna" FromRole="Medicina" ToRole="ExercitiiSpeciale" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MedicinaUser" FromRole="Medicina" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Nutritie">
+    <Key>
+      <PropertyRef Name="Id_aliment" />
+    </Key>
+    <Property Name="Id_aliment" Type="Int32" Nullable="false" />
+    <Property Name="Id_categorie" Type="Int32" Nullable="false" />
+    <Property Name="Nume_aliment" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DomeniuSanatate" Relationship="Self.FK_NutritieDsanatate" FromRole="Nutritie" ToRole="DomeniuSanatate" />
+    <NavigationProperty Name="User" Relationship="Self.FK_NutritieUser" FromRole="Nutritie" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Produse">
+    <Key>
+      <PropertyRef Name="Id_produs" />
+    </Key>
+    <Property Name="Id_produs" Type="Int32" Nullable="false" />
+    <Property Name="Nume_produs" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriere" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Linq" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ProduseUser" FromRole="Produse" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_UsersRole" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SubiecteForum">
+    <Key>
+      <PropertyRef Name="Id_subiect" />
+    </Key>
+    <Property Name="Id_subiect" Type="Int32" Nullable="false" />
+    <Property Name="Subiect" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comntariu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SubForumUser" FromRole="SubiecteForum" ToRole="Users" />
+    <NavigationProperty Name="Users" Relationship="Self.Comentarii" FromRole="SubiecteForum" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Parola" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConfirmPaorola" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DomeniuAntrenamentes" Relationship="Self.FK_AntrenamentUser" FromRole="Users" ToRole="DomeniuAntrenamente" />
+    <NavigationProperty Name="DomeniuSanatates" Relationship="Self.FK_SanatateUser" FromRole="Users" ToRole="DomeniuSanatate" />
+    <NavigationProperty Name="DomeniuSports" Relationship="Self.FK_SportUser" FromRole="Users" ToRole="DomeniuSport" />
+    <NavigationProperty Name="ExercitiiSpeciales" Relationship="Self.FK_ExSpecialeUser" FromRole="Users" ToRole="ExercitiiSpeciale" />
+    <NavigationProperty Name="GraficAntrenaments" Relationship="Self.FK_GraficUser" FromRole="Users" ToRole="GraficAntrenament" />
+    <NavigationProperty Name="Medicinas" Relationship="Self.FK_MedicinaUser" FromRole="Users" ToRole="Medicina" />
+    <NavigationProperty Name="Nutrities" Relationship="Self.FK_NutritieUser" FromRole="Users" ToRole="Nutritie" />
+    <NavigationProperty Name="Produses" Relationship="Self.FK_ProduseUser" FromRole="Users" ToRole="Produse" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UsersRole" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="SubiecteForums" Relationship="Self.FK_SubForumUser" FromRole="Users" ToRole="SubiecteForum" />
+    <NavigationProperty Name="Warkouts" Relationship="Self.FK_WorkoutUser" FromRole="Users" ToRole="Warkout" />
+    <NavigationProperty Name="SubiecteForums1" Relationship="Self.Comentarii" FromRole="Users" ToRole="SubiecteForum" />
+  </EntityType>
+  <EntityType Name="Warkout">
+    <Key>
+      <PropertyRef Name="Id_exercitiu" />
+    </Key>
+    <Property Name="Id_exercitiu" Type="Int32" Nullable="false" />
+    <Property Name="id_muschi" Type="Int32" Nullable="false" />
+    <Property Name="Nume_exercitiu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DomeniuSport" Relationship="Self.FK_SportWorkout" FromRole="Warkout" ToRole="DomeniuSport" />
+    <NavigationProperty Name="User" Relationship="Self.FK_WorkoutUser" FromRole="Warkout" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_AntrenamentUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="DomeniuAntrenamente" Type="Self.DomeniuAntrenamente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="DomeniuAntrenamente">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficAntrenamnte">
+    <End Role="DomeniuAntrenamente" Type="Self.DomeniuAntrenamente" Multiplicity="1" />
+    <End Role="GraficAntrenament" Type="Self.GraficAntrenament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DomeniuAntrenamente">
+        <PropertyRef Name="Id_antrenament" />
+      </Principal>
+      <Dependent Role="GraficAntrenament">
+        <PropertyRef Name="Id_antrenament" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicinaDsanatate">
+    <End Role="DomeniuSanatate" Type="Self.DomeniuSanatate" Multiplicity="1" />
+    <End Role="Medicina" Type="Self.Medicina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DomeniuSanatate">
+        <PropertyRef Name="Id_categorie" />
+      </Principal>
+      <Dependent Role="Medicina">
+        <PropertyRef Name="Id_categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NutritieDsanatate">
+    <End Role="DomeniuSanatate" Type="Self.DomeniuSanatate" Multiplicity="1" />
+    <End Role="Nutritie" Type="Self.Nutritie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DomeniuSanatate">
+        <PropertyRef Name="Id_categorie" />
+      </Principal>
+      <Dependent Role="Nutritie">
+        <PropertyRef Name="Id_categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanatateUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="DomeniuSanatate" Type="Self.DomeniuSanatate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="DomeniuSanatate">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="DomeniuSport" Type="Self.DomeniuSport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="DomeniuSport">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SportWorkout">
+    <End Role="DomeniuSport" Type="Self.DomeniuSport" Multiplicity="1" />
+    <End Role="Warkout" Type="Self.Warkout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DomeniuSport">
+        <PropertyRef Name="Id_muschi" />
+      </Principal>
+      <Dependent Role="Warkout">
+        <PropertyRef Name="id_muschi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExSpecialeMedicna">
+    <End Role="Medicina" Type="Self.Medicina" Multiplicity="1" />
+    <End Role="ExercitiiSpeciale" Type="Self.ExercitiiSpeciale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicina">
+        <PropertyRef Name="Id_maladie" />
+      </Principal>
+      <Dependent Role="ExercitiiSpeciale">
+        <PropertyRef Name="Id_maladie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExSpecialeUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="ExercitiiSpeciale" Type="Self.ExercitiiSpeciale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="ExercitiiSpeciale">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="GraficAntrenament" Type="Self.GraficAntrenament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="GraficAntrenament">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicinaUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Medicina" Type="Self.Medicina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Medicina">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NutritieUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Nutritie" Type="Self.Nutritie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Nutritie">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduseUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Produse" Type="Self.Produse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Produse">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubForumUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="SubiecteForum" Type="Self.SubiecteForum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="SubiecteForum">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Warkout" Type="Self.Warkout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Warkout">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Comentarii">
+    <End Role="SubiecteForum" Type="Self.SubiecteForum" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="FitnessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DomeniuAntrenamentes" EntityType="Self.DomeniuAntrenamente" />
+    <EntitySet Name="DomeniuSanatates" EntityType="Self.DomeniuSanatate" />
+    <EntitySet Name="DomeniuSports" EntityType="Self.DomeniuSport" />
+    <EntitySet Name="ExercitiiSpeciales" EntityType="Self.ExercitiiSpeciale" />
+    <EntitySet Name="GraficAntrenaments" EntityType="Self.GraficAntrenament" />
+    <EntitySet Name="Medicinas" EntityType="Self.Medicina" />
+    <EntitySet Name="Nutrities" EntityType="Self.Nutritie" />
+    <EntitySet Name="Produses" EntityType="Self.Produse" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="SubiecteForums" EntityType="Self.SubiecteForum" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Warkouts" EntityType="Self.Warkout" />
+    <AssociationSet Name="FK_AntrenamentUser" Association="Self.FK_AntrenamentUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DomeniuAntrenamente" EntitySet="DomeniuAntrenamentes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficAntrenamnte" Association="Self.FK_GraficAntrenamnte">
+      <End Role="DomeniuAntrenamente" EntitySet="DomeniuAntrenamentes" />
+      <End Role="GraficAntrenament" EntitySet="GraficAntrenaments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicinaDsanatate" Association="Self.FK_MedicinaDsanatate">
+      <End Role="DomeniuSanatate" EntitySet="DomeniuSanatates" />
+      <End Role="Medicina" EntitySet="Medicinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NutritieDsanatate" Association="Self.FK_NutritieDsanatate">
+      <End Role="DomeniuSanatate" EntitySet="DomeniuSanatates" />
+      <End Role="Nutritie" EntitySet="Nutrities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanatateUser" Association="Self.FK_SanatateUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DomeniuSanatate" EntitySet="DomeniuSanatates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportUser" Association="Self.FK_SportUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="DomeniuSport" EntitySet="DomeniuSports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SportWorkout" Association="Self.FK_SportWorkout">
+      <End Role="DomeniuSport" EntitySet="DomeniuSports" />
+      <End Role="Warkout" EntitySet="Warkouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExSpecialeMedicna" Association="Self.FK_ExSpecialeMedicna">
+      <End Role="Medicina" EntitySet="Medicinas" />
+      <End Role="ExercitiiSpeciale" EntitySet="ExercitiiSpeciales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExSpecialeUser" Association="Self.FK_ExSpecialeUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ExercitiiSpeciale" EntitySet="ExercitiiSpeciales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficUser" Association="Self.FK_GraficUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="GraficAntrenament" EntitySet="GraficAntrenaments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicinaUser" Association="Self.FK_MedicinaUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Medicina" EntitySet="Medicinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NutritieUser" Association="Self.FK_NutritieUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Nutritie" EntitySet="Nutrities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduseUser" Association="Self.FK_ProduseUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Produse" EntitySet="Produses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole" Association="Self.FK_UsersRole">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubForumUser" Association="Self.FK_SubForumUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SubiecteForum" EntitySet="SubiecteForums" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUser" Association="Self.FK_WorkoutUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Warkout" EntitySet="Warkouts" />
+    </AssociationSet>
+    <AssociationSet Name="Comentarii" Association="Self.Comentarii">
+      <End Role="SubiecteForum" EntitySet="SubiecteForums" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -19,16 +19,16 @@ namespace EFitnessMonitoring.Models
 
         public ApplicationUser()
         {
-            DomeniuAntrenamentes = new HashSet<DomeniuAntrenamente>();
-            DomeniuSanatates = new HashSet<DomeniuSanatate>();
+            //DomeniuAntrenamentes = new HashSet<DomeniuAntrenamente>();
+            //DomeniuSanatates = new HashSet<DomeniuSanatate>();
             DomeniuSports = new HashSet<DomeniuSport>();
-            ExercitiiSpeciales = new HashSet<ExercitiiSpeciale>();
+            //ClasaMuschis = new HashSet<ClasaMuschi>();
+            //ExercitiiSpeciales = new HashSet<ExercitiiSpeciale>();
             GraficAntrenaments = new HashSet<GraficAntrenament>();
             Medicinas = new HashSet<Medicina>();
-            Nutrities = new HashSet<Nutritie>();
+           // Nutrities = new HashSet<Nutritie>();
             Produses = new HashSet<Produse>();
             SubiecteForums = new HashSet<SubiecteForum>();
-            Warkouts = new HashSet<Warkout>();
             SubiecteForums1 = new HashSet<SubiecteForum>();
         }
 
@@ -50,17 +50,20 @@ namespace EFitnessMonitoring.Models
         public int Virsta { get; set; }
 
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DomeniuAntrenamente> DomeniuAntrenamentes { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<DomeniuAntrenamente> DomeniuAntrenamentes { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DomeniuSanatate> DomeniuSanatates { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<DomeniuSanatate> DomeniuSanatates { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DomeniuSport> DomeniuSports { get; set; }
+        // nou
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<ClasaMuschi> ClasaMuschis { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ExercitiiSpeciale> ExercitiiSpeciales { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<ExercitiiSpeciale> ExercitiiSpeciales { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GraficAntrenament> GraficAntrenaments { get; set; }
@@ -68,8 +71,8 @@ namespace EFitnessMonitoring.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Medicina> Medicinas { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Nutritie> Nutrities { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Nutritie> Nutrities { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produse> Produses { get; set; }
@@ -77,8 +80,7 @@ namespace EFitnessMonitoring.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubiecteForum> SubiecteForums { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Warkout> Warkouts { get; set; }
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubiecteForum> SubiecteForums1 { get; set; }

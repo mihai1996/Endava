@@ -10,21 +10,23 @@ namespace EFitnessMonitoring.Models
     public partial class Produse
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id_produs { get; set; }
 
+        public int Id_category { get; set; }
+
         [Required]
-        [StringLength(30)]
+        [StringLength(120)]
         public string Nume_produs { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Descriere { get; set; }
+        public string Image { get; set; }
 
         [Required]
         public string Linq { get; set; }
 
         public int UserId { get; set; }
+
+        public virtual ProduseCategory ProduseCategory { get; set; }
 
         public virtual ApplicationUser User { get; set; }
     }

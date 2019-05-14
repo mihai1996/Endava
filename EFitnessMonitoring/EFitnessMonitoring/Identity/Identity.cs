@@ -51,10 +51,4 @@ namespace EFitnessMonitoring.Models.Identity
         {
         }
     }
-
-    //public class UserRoles : IdentityUserRole<int>
-    //{
-    //    public virtual ApplicationUser User { get; set; }
-    //    public virtual RoleIntPk Role { get; set; }
-    //}
 }

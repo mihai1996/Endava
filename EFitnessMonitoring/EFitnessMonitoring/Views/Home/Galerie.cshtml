@@ -11,12 +11,20 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
                     <ul class="navbar-nav">
+
+                        }
                         @if (User.IsInRole("admin"))
                         {
                             <li class="nav-item">
                                 <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a href="/Antrenor/GetCardProduct" class="nav-link">Produse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Antrenor/Atrenamente/" class="nav-link">Fitness</a>
+                        </li>
                         <li class="nav-item">
                             <a href="/Home/About" class="nav-link">Despre</a>
                         </li>
@@ -26,9 +34,7 @@
                         <li class="nav-item">
                             <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
                         </li>
-                        @*<li class="nav-item">
-            <a href="/Auth/Login" class="nav-link">Login</a>
-        </li>*@
+
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {

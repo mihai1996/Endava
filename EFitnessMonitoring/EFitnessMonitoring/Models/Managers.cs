@@ -120,9 +120,32 @@ namespace EFitnessMonitoring.Models
             roleManager.Create(role3);
             roleManager.Create(role4);
 
+            // muschi
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 1, Nume_Muschi = "Antebraț" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 2, Nume_Muschi = "Spate" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 3, Nume_Muschi = "Triceps" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 4, Nume_Muschi = "Cvadriceps" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 5, Nume_Muschi = "Gastrocnemius" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 6, Nume_Muschi = "Umeri" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 7, Nume_Muschi = "Piept" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 8, Nume_Muschi = "Biceps" });
+            context.ClasaMuschis.Add(new ClasaMuschi { Id_muschi = 9, Nume_Muschi = "Abdomen" });
+
+            //Domeniu antrenamente
+            context.DomeniuAntrenamentes.Add(new DomeniuAntrenamente { Id_antrenament = 1, Nume_antrenament = "Creștere greutate" });
+            context.DomeniuAntrenamentes.Add(new DomeniuAntrenamente { Id_antrenament = 2, Nume_antrenament = "Scădere greutate" });
+
+            //Domeniu santate
+            context.DomeniuSanatates.Add(new DomeniuSanatate { Id_categorie = 1, Nume_categorie = "Sănătate" });
+            context.DomeniuSanatates.Add(new DomeniuSanatate { Id_categorie = 2, Nume_categorie = "Nutriție" });
+
+            //Categorie Produs
+            context.ProduseCategories.Add(new ProduseCategory { Id_category = 1, NumeCategorie = "brățări fitness" });
+            context.ProduseCategories.Add(new ProduseCategory { Id_category = 2, NumeCategorie = "proteine" });
+            context.ProduseCategories.Add(new ProduseCategory { Id_category = 3, NumeCategorie = "aerobică" });
             //cream utilizator
             var admin = new ApplicationUser {Email = "mihailascu@gmail.com", UserName = "admin", Gen = "Masculin", Virsta = 21 };
-            string parola = "ad46D_ewr3";
+            string parola = "Me-12345";
             var result = userManager.Create(admin, parola);
 
             //daca crearea utilizator a avut loc cu sucecs
@@ -131,6 +154,7 @@ namespace EFitnessMonitoring.Models
                 //adauga rolul pentru utilizator
                 userManager.AddToRole(admin.Id, role1.Name);
                 userManager.AddToRole(admin.Id, role2.Name);
+                userManager.AddToRole(admin.Id, role3.Name);
             }
 
             base.Seed(context);

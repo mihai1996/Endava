@@ -1,0 +1,101 @@
+﻿@using EFitnessMonitoring.Models.DTO
+@model  SanatateView
+<div class="header2" id="header">
+    <div class="header-logo-outs">
+        <div class="container-fluid">
+            <!--//navigation section -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="hedder-up ">
+                    <h1><a class="navbar-brand" href="/Home/index" data-aos="fade-right">EMF</a></h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" data-aos="fade-left">
+                    <ul class="navbar-nav">
+
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Auth/GetUsers" class="nav-link">AdminMode</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a href="/Antrenor/GetCardProduct" class="nav-link">Produse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Antrenor/Atrenamente/" class="nav-link">Fitness</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/About" class="nav-link">Despre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Home/Galerie" class="nav-link">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Calculator/Calculator" class="nav-link">Calculator</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Auth/Logout" class="nav-link">Logout</a>
+                            }
+                            else
+                            {
+                                <a href="/Auth/Login" class="nav-link">Login</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--//navigation section -->
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+<form action="/Antrenor/CreateSanatate" method="post">
+    <h1 style="text-align: center;">Creare Articol</h1>
+    <div class="grid-container">
+        <div class="borderarticle">
+            @Html.TextBoxFor(m => m.Nume_maladie, new { placeholder = "Nume antrenament", required = "required" })
+            <i class="fas fa-ad fa-2x"></i>
+        </div>
+        <div class="borderarticle">
+            @Html.TextBoxFor(m => m.Image, new { placeholder = "Linc imagine", required = "required" })
+            <i class="fas fa-image fa-2x"></i>
+        </div>
+        <div class="borderarticle">
+            @Html.DropDownListFor(m => m.Id_categorie, new List<SelectListItem>
+      {
+           new SelectListItem {Text = "Categorie antrenament", },
+           new SelectListItem {Text = "Sănătate", Value = "1" },
+           new SelectListItem {Text = "Nutriție", Value = "2" }
+
+      })
+
+        </div>
+
+        <h4 class="mb-lg-5 mb-lg-4 mb-3" style="text-align: center;">Desriere</h4>
+        <div class="field-outer">
+            @Html.TextAreaFor(m => m.Descriere, new { @class = "ckeditor", placeholder = "Descriere" })
+        </div>
+        <div class="form-group">
+            <script>
+                CKEDITOR.replace("Ckeditor");
+            </script>
+        </div>
+        <div class="field-outer">
+            <input class="btnArticol" type="submit" value="Postează articol" />
+            <br /><br /><br />
+        </div>
+    </div>
+</form>
+
+<script src="~/Themes/ckeditor/ckeditor.js"></script>
+
+
+

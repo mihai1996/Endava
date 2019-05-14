@@ -5,12 +5,12 @@ namespace EFitnessMonitoring.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     [Table("GraficAntrenament")]
     public partial class GraficAntrenament
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id_grafic { get; set; }
 
         public int Id_antrenament { get; set; }
@@ -20,7 +20,10 @@ namespace EFitnessMonitoring.Models
         public string Titlu { get; set; }
 
         [Required]
+        [AllowHtml]
         public string Descriere { get; set; }
+
+        public string Image { get; set; }
 
         public int UserId { get; set; }
 
