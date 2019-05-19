@@ -6,14 +6,53 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Services.Description;
 
 namespace EFitnessMonitoring.Models
 {
+    public class EmailService 
+    {
+        public Task SendAsync(string message, string email)
+        {
+            // Plug in your email service here to send an email.
+            return Task.Factory.StartNew(() =>
+            {
+                sendMail(message, email);
+            });
+        }
+
+        void sendMail(string message, string email)
+        {
+            #region formatter
+            string text = "Activare cont";
+            string html = $"Acceseaza linkul pentru a activa contul: {message}";
+
+            #endregion
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
+            msg.To.Add(new MailAddress(email));
+            msg.Subject = text;
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(),
+                ConfigurationManager.AppSettings["Parola"].ToString());
+            smtpClient.Credentials = credentials;
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(msg);
+        }
+    }
+
     public class ApplicationUserManager : UserManager<ApplicationUser, int>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser, int> store)

@@ -11,16 +11,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Providers.Entities;
 using System.Web.Security;
-
+//using Microsoft.Owin.Host.SystemWeb;
 namespace EFitnessMonitoring.Controllers
 {
     public class AuthController : Controller
     {
+        private ApplicationSignInManager _signInManager;
+
         private ApplicationUserManager UserManager
         {
             get
@@ -34,6 +37,18 @@ namespace EFitnessMonitoring.Controllers
             get
             {
                 return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -58,12 +73,14 @@ namespace EFitnessMonitoring.Controllers
             {
                 ApplicationUser user = await UserManager.FindAsync(model.Username, model.Parola);
 
-                if (user == null)
+                if (user == null || user.EmailConfirmed == false)
                 {
-                    ModelState.AddModelError("", "Parola sau Username gresit.");
+                    ModelState.AddModelError("", "Parola sau Username gresit ");
+                    ModelState.AddModelError("", "Emailul nu a fost confirmat.");
                 }
-                else
+                else 
                 {
+
                     ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
                         DefaultAuthenticationTypes.ApplicationCookie);
 
@@ -80,6 +97,33 @@ namespace EFitnessMonitoring.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(model);
         }
+        ////[HttpPost]
+        ////[AllowAnonymous]
+        ////[ValidateAntiForgeryToken]
+        ////public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        ////{
+        ////    if (ModelState.IsValid)
+        ////    {
+        ////        var user = await UserManager.FindAsync(model.Username, model.Parola);
+        ////        if (user != null)
+        ////        {
+        ////            if (user.EmailConfirmed == true)
+        ////            {
+        ////                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        ////                return RedirectToLocal(returnUrl);
+        ////            }
+        ////            else
+        ////            {
+        ////                ModelState.AddModelError("", "Не подтвержден email.");
+        ////            }
+        ////        }
+        ////        else
+        ////        {
+        ////            ModelState.AddModelError("", "Неверный логин или пароль");
+        ////        }
+        ////    }
+        ////    return View(model);
+        ////}
 
         [HttpGet]
         public ActionResult Registration()
@@ -87,7 +131,14 @@ namespace EFitnessMonitoring.Controllers
             return View();
         }
 
+        public ActionResult EmailMesage()
+        {
+            return View();
+        }
+
         [HttpPost]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Registration(RegistrationView model)
         {
             if (ModelState.IsValid)
@@ -104,20 +155,44 @@ namespace EFitnessMonitoring.Controllers
 
                 if (result.Succeeded)
                 {
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                   string ccode = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     await UserManager.AddToRoleAsync(user.Id, "user");
-                    return RedirectToAction("Login", "Auth");
+                    var callbackUrl = Url.Action("ConfirmEmail", "Auth",
+               new { userId = user.Id, code = ccode }, protocol: Request.Url.Scheme);
+                    var mailer = new EmailService();
+                    await mailer.SendAsync("<a href=\"" + callbackUrl + "\">here</a>", user.Email);
+
+                    return RedirectToAction("EmailMesage", "Auth");//
+
+                    //return RedirectToAction("Login", "Auth");
                 }
-                else
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", "error");
-                    }
-                }
+                AddErrors(result);
+                //else
+                //{
+                //    foreach (string error in result.Errors)
+                //    {
+                //        ModelState.AddModelError("", "error");
+                //    }
+                //}
             }
             return View(model);
         }
 
+        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return Content("Error");
+            }
+            var result = await UserManager.ConfirmEmailAsync(Convert.ToInt32(userId), code);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login", "Auth");//
+            }
+            AddErrors(result);
+            return View();
+        }
 
         [Authorize(Roles = "admin")]
         public ActionResult GetUsers()
@@ -161,40 +236,84 @@ namespace EFitnessMonitoring.Controllers
             var user = db.UserRoleIntPks.FirstOrDefault(u => u.Id == id);
             ApplicationUser users = await UserManager.FindByIdAsync(user.UserId);
 
-
             var result = await UserManager.DeleteAsync(users);
-            //var result1 = await UserManager.UpdateAsync(users);
-            //db.UserRoleIntPks.Remove(user);
-            //db.SaveChanges();
-
+           
             return RedirectToAction("GetUsers", "Auth");
 
-            
         }
 
-        //[HttpPost]
-        //[ActionName("Delete")]
-        //public ActionResult DeleteConfirmed(int id)
+        //private ActionResult RedirectToLocal(string returnUrl)
         //{
-        //    FitnessDbContext db = new FitnessDbContext();
-        //    var user = db.UserRoleIntPks.FirstOrDefault(u => u.Id == id);
+        //    if (Url.IsLocalUrl(returnUrl))
+        //    {
+        //        return Redirect(returnUrl);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
 
-        //    db.UserRoleIntPks.Remove(user);
-        //    db.SaveChanges();
-        //    return RedirectToAction("GetUsers", "Auth");
+       // // GET: /Account/ConfirmEmail
+       // [HttpGet]
+       ////[AllowHtml]
+       // public async Task<ActionResult> ConfirmEmail(string userId, string code)
+       // {
+       //     if (userId == null || code == null)
+       //     {
+       //         return View("Error");
+       //     }
+       //     var id = Convert.ToInt32(userId);
+       //     var user = await UserManager.FindByIdAsync(id);
 
-            //ApplicationUser user = await UserManager.FindByIdAsync(id);
-            //if (user != null)
-            //{
-            //    IdentityResult result = await UserManager.Delete(user);
-            //    if (result.Succeeded)
-            //    {
-            //        return RedirectToAction("GetUsers", "Auth");
-            //    }
-            //}
-            //return RedirectToAction("GetUsers", "Auth");
+       //     if (user == null)
+       //     {
+       //         return View("Error");
+       //     }
+       //     var result = await UserManager.ConfirmEmailAsync(user.Id, code);
+       //     return View(result.Succeeded ? "ConfirmEmail" : "Error");
+       // }
 
-            //}
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                if (error.StartsWith("Name"))
+                {
+                    var NameToEmail = Regex.Replace(error, "Name", "Email");
+                    ModelState.AddModelError("", NameToEmail);
+                }
+                else
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+        }
+
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ConfirmEmail(string Token, string Email)
+        //{
+        //    var id = Convert.ToInt32(Token);
+        //    ApplicationUser user = this.UserManager.FindById(id);
+        //    if (user != null)
+        //    {
+        //        if (user.Email == Email)
+        //        {
+        //            user.EmailConfirmed = true;
+        //            await UserManager.UpdateAsync(user);
+        //            await SignInAsync(user, isPersistent: false);
+        //            return RedirectToAction("Index", "Home", new { ConfirmedEmail = user.Email });
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Confirm", "Account", new { Email = user.Email });
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Confirm", "Account", new { Email = "" });
+        //    }
+
         //}
     }
 }

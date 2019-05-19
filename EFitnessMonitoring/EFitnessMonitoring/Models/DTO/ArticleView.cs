@@ -9,7 +9,6 @@ namespace EFitnessMonitoring.Models.DTO
 {
     public class ArticleView
     {
-        //public int Id_exercitiu { get; set; }
         public string Nume_exercitiu { get; set; }
         [AllowHtml]
         public string Descriere { get; set; }

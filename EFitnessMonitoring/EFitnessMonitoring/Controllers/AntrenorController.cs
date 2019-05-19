@@ -48,15 +48,12 @@ namespace EFitnessMonitoring.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 using (FitnessDbContext db = new FitnessDbContext())
                 {
                     string currentUserId = User.Identity.GetUserId();
                     var a = Convert.ToInt32(currentUserId);
                     ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id.Equals(a));
                 
-
-
                 DomeniuSport sport = new DomeniuSport
                     {
                         Nume_exercitiu = model.Nume_exercitiu,
@@ -64,12 +61,9 @@ namespace EFitnessMonitoring.Controllers
                         Descriere = model.Descriere,
                         Id_muschi = model.Id_muschi,
                         UserId = a
-
                     };
-                    //HttpUtility.HtmlDecode(sport.Descriere);
                     db.DomeniuSports.Add(sport);
                     db.SaveChanges();
-
                 }
             }
             ModelState.Clear();
@@ -89,7 +83,6 @@ namespace EFitnessMonitoring.Controllers
 
         public ActionResult ShowAntrenamente(string id)
         {
-            //DomeniuSport sport;
             using (FitnessDbContext db = new FitnessDbContext())
             {
                 var idd = Convert.ToInt32(id);
